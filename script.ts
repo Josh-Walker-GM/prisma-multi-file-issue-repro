@@ -55,7 +55,7 @@ async function main() {
   const allPosts = await prisma.post.findMany({
     where: { published: true },
   })
-  console.log(`Retrieved all published posts: ${JSON.stringify(allPosts)}`)
+  console.log(`Retrieved all published posts: ${JSON.stringify(allPosts, undefined, 2)}`)
 
   // Create a new post (written by an already existing user with email alice@prisma.io)
   const newPost = await prisma.post.create({
@@ -70,7 +70,7 @@ async function main() {
       },
     },
   })
-  console.log(`Created a new post: ${JSON.stringify(newPost)}`)
+  console.log(`Created a new post: ${JSON.stringify(newPost, undefined, 2)}`)
 
   // Publish the new post
   const updatedPost = await prisma.post.update({
@@ -81,7 +81,7 @@ async function main() {
       published: true,
     },
   })
-  console.log(`Published the newly created post: ${JSON.stringify(updatedPost)}`)
+  console.log(`Published the newly created post: ${JSON.stringify(updatedPost, undefined, 2)}`)
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
@@ -91,7 +91,7 @@ async function main() {
       },
     })
     .posts()
-  console.log(`Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`)
+  console.log(`Retrieved all posts from a specific user: ${JSON.stringify(postsByUser, undefined, 2)}`)
 }
 
 main()
