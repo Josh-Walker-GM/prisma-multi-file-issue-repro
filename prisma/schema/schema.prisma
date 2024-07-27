@@ -1,0 +1,15 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "sqlite"
+
+  // Note(jgmw): The documentation (vscode pop-up) for env states that:
+  // > Note that the file must be in the same directory as your schema.prisma
+  // > file to automatically be picked up by the Prisma CLI."
+  // However, this does not seem to be the case when you enable the `prismaSchemaFolder`
+  // preview feature. It has to be one directory up in that case.
+  url = env("DATABASE_URL")
+}
